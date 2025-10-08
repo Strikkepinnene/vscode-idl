@@ -1,4 +1,3 @@
-
 ;+
 ;
 ; Purpose of this file is to work through the logic for how formatting of IDL routines
@@ -11,13 +10,13 @@ compile_opt idl2, hidden
 
 e = envi()
 
-routines = [routine_info(/SYSTEM, /FUNCTIONS), routine_info(/SYSTEM)]
+routines = [routine_info(/system, /functions), routine_info(/system)]
 
 ; check for methods
 pos = strpos(routines, '::')
 idxFix = where(pos ne -1, countFix)
 if (countFix ne 0) then begin
-  routines[idxFix] = ((strsplit(routines[idxFix], '::', /EXTRACT)).toArray())[*,0]
+  routines[idxFix] = ((strsplit(routines[idxFix], '::', /extract)).toArray())[*, 0]
 endif
 
 ; get unique
@@ -26,8 +25,8 @@ routines = routines.uniq()
 ; process all of our routines
 foreach routine, routines, idx do begin
   case !true of
-    routine.startsWith('IDL') AND ~routine.startsWith('IDL_'): ; do nothing
-    routine.startsWith('ENVI') AND ~routine.startsWith('ENVI_'): ; do nothing
+    routine.startsWith('IDL') and ~routine.startsWith('IDL_'): ; do nothing
+    routine.startsWith('ENVI') and ~routine.startsWith('ENVI_'): ; do nothing
     else: routines[idx] = strlowcase(routine)
   endcase
 endforeach
@@ -39,9 +38,8 @@ endforeach
 ;
 ; Might be able to use this too: https://www.npmjs.com/package/change-case
 
-message, 'this'
-catch, err
-return, val
-
+; TODO: Implement actual functionality
+; message, 'this'
+; catch, err
 
 end

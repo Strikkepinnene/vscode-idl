@@ -314,7 +314,7 @@ function catalog_to_json_get_tooltips
   tooltips = orderedhash(/fold_case)
 
   ; process and validate we can ingest
-  foreach line, toolDatabase, idx do begin
+  foreach line, toolDatabase, _idx do begin
     ; split our line
     split = strsplit(line, ';', /extract)
 

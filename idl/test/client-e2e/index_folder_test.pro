@@ -1,9 +1,9 @@
 ;+
 ; :Description:
-;   Initializes IDL for running in notebooks
+;   Test version of notebook initialization (renamed to avoid conflicts)
 ;
 ;-
-pro vscode_notebookInit
+pro vscode_notebookInit_test
   compile_opt idl2, hidden
 
   ; make sure super magic exists
