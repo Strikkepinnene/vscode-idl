@@ -49,6 +49,9 @@ migrations.json
 .DS_Store
 Thumbs.db
 
+# Snapshot analysis directories
+snapshots/
+
 # vscode extension building
 .vscode-test
 *.vsix
