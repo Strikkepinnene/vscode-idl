@@ -14,6 +14,7 @@ This project uses **NX** for monorepo management with two main categories:
   - `parsing-worker`: Background worker thread for indexing IDL code
   - `notebook`: Notebook renderer and kernel implementation
   - `idl-webview`: Angular-based webview UI
+  - `client-web`: Web version of the client for browser environments
   - `package-json`: Generates package.json contribution points from code
   - `i18n`: Translation file generator
   - `tmlang-maker`: Converts YAML syntax definitions to plist for VSCode
@@ -21,6 +22,7 @@ This project uses **NX** for monorepo management with two main categories:
 - **`libs/`**: Shared code imported by apps and other libs
   - **VSCode-dependent libs** MUST be in `libs/vscode/` subdirectory (testing requirement)
   - Uses path aliases defined in `tsconfig.base.json` (e.g., `@idl/parser`, `@idl/vscode/client`)
+  - **Domain organization**: `parsing/*`, `assembling/*`, `types/*`, `idl/*`, `mcp/*`, `vscode/*`
 
 ### Key Architectural Patterns
 
@@ -52,6 +54,7 @@ npm start                  # Build all components with watch mode
 # OR for faster startup:
 npm run start-server       # Build server + parsing-worker with watch
 npm run start-client       # Build client with watch
+npm run start-web          # Build web client with watch (browser version)
 ```
 Then press **F5** in VSCode to launch extension development host.
 
@@ -73,6 +76,9 @@ npm run package            # Builds and creates .vsix file
 
 ### Ubuntu on Windows
 Replace `nx` with `npx nx` in all commands.
+
+### Extension Activation
+Extension now **always activates** in VSCode to support GitHub Copilot integration and MCP tools.
 
 ## Project-Specific Conventions
 
@@ -114,6 +120,13 @@ Libraries importing `vscode` MUST be in `libs/vscode/` because:
 - `libs/idl/idl-process`: Spawns IDL process for debugging/execution
 - `libs/idl/idl-machine`: New native IDL 9.2+ integration
 - Notebooks communicate with IDL kernel via socket.io
+
+### Model Context Protocol (MCP)
+- New MCP integration in `libs/mcp/*` for AI agent tooling
+- Server tools and resources in `libs/mcp/server-*`
+- VSCode-specific MCP handlers in `libs/mcp/vscode`
+- Debug integration at `libs/vscode/debug/src/lib/mcp`
+- Language server MCP tools at `libs/vscode/server/src/lib/mcp`
 
 ### Configuration System
 - Extension config in `libs/vscode/extension-config`

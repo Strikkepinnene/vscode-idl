@@ -1,0 +1,29 @@
+{
+  "language": "typescript",
+  "framework": "node",
+  "description": "Official IDL extension for Visual Studio Code - a full-featured development environment for IDL (Interactive Data Language) with language server, notebooks, debugging, and more.",
+  "codebase": {
+    "architecture": "nx-monorepo",
+    "packageManager": "npm",
+    "buildSystem": "nx",
+    "testFramework": "jest"
+  },
+  "preferences": {
+    "codeStyle": "prettier",
+    "linter": "eslint",
+    "formatting": {
+      "tabWidth": 2,
+      "useTabs": false
+    }
+  },
+  "projectStructure": {
+    "apps": "Buildable entry points that produce executables",
+    "libs": "Shared code imported by apps and other libs",
+    "pathAliases": "Defined in tsconfig.base.json with @idl/* namespace"
+  },
+  "keyPatterns": {
+    "vscodeDependentLibs": "MUST be in libs/vscode/ subdirectory for testing isolation",
+    "codeGeneration": "Many contribution points generated from TypeScript code rather than manually maintained",
+    "languageServer": "LSP architecture with client, server, and parsing worker components"
+  }
+}
